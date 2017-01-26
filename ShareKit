@@ -1,0 +1,334 @@
+//
+//  Layout.m
+//  My Personal Bets
+//
+//  Created by Erinson Villarroel on 22/1/17.
+//  Copyright © 2017 Erinson Villarroel. All rights reserved.
+//
+
+#import "Layout.h"
+#import "RunnigData.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "FacebookShare.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+
+
+
+#define RGB(r, g, b) [UIColor colorWithRed:(float)r / 255.0 green:(float)g / 255.0 blue:(float)b / 255.0 alpha:1.0]
+@interface Layout ()
+@property (strong, nonatomic) IBOutlet UIVisualEffectView *TakePicture;
+@property (strong, nonatomic) IBOutlet UIButton *Cancel;
+
+@property (strong, nonatomic) IBOutlet UIView *Photo003;
+@property (strong, nonatomic) IBOutlet UIButton *Foto001;
+@property (strong, nonatomic) IBOutlet UIButton *Foto002;
+@property (strong, nonatomic) IBOutlet UIButton *Foto003;
+@property (strong, nonatomic) IBOutlet UIImageView *ImagenFoto01;
+@property (strong, nonatomic) IBOutlet UIImageView *ImagenFoto02;
+@property (strong, nonatomic) IBOutlet UIImageView *ImagenFoto03;
+@property (strong, nonatomic) IBOutlet UIButton *ButonFoto;
+@property (strong, nonatomic) IBOutlet UIImageView *Photo003S;
+
+@property (strong, nonatomic) IBOutlet UILabel *FOTO;
+
+@end
+
+@implementation Layout
+@synthesize snapshotImageView, snapshotImage;
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [_ButtonContinue.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_ButtonContinue.layer setShadowOpacity:0.8];
+    [_ButtonContinue.layer setShadowRadius:3.0];
+    [_ButtonContinue.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    [_ButtonContinue.layer setCornerRadius:5.0f];
+    
+    self.snapshotImageView.layer.borderWidth = 2.0f;
+    self.snapshotImageView.layer.borderColor = [UIColor colorWithRed:11/255.0 green:11/255.0 blue:59/255.0 alpha:1.0].CGColor;
+    
+    
+    [_ButonFoto.layer setShadowColor:[UIColor blackColor].CGColor];
+    [_ButonFoto.layer setShadowOpacity:0.8];
+    [_ButonFoto.layer setShadowRadius:3.0];
+    [_ButonFoto.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    [_ButonFoto.layer setCornerRadius:5.0f];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+   
+    snapshotImageView.image = snapshotImage;
+    _TexDistance.text = _standardDeviation;
+    _BetsTime.text =_average;
+    
+}
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+- (IBAction)Back:(id)sender {
+    [self.storyboard instantiateViewControllerWithIdentifier:@"DocumentationES"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)Set01:(id)sender {
+    
+    
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         
+    _Photo001.alpha=1;
+    _Photo002.alpha=0;
+    _Photo003.alpha=0;
+                     }
+                     completion:nil];
+    
+    
+    [UIView animateWithDuration:0.2
+                          delay:0.3
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _Photo001 .frame = CGRectMake(214, 108, 80, 80);
+                     }
+                     completion:nil];
+    
+
+    
+  
+ 
+    
+    
+}
+- (IBAction)Set02:(id)sender {
+    
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+    _Photo001.alpha=1;
+    _Photo002.alpha=1;
+    _Photo003.alpha=0;
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:0.2
+                          delay:0.4
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _Photo001 .frame = CGRectMake(214,91, 80, 80);
+                         _Photo002 .frame = CGRectMake(214, 180, 80, 80);
+                     }
+                     completion:nil];
+    
+}
+- (IBAction)Sert03:(id)sender {
+    
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+    _Photo001.alpha=1;
+    _Photo002.alpha=1;
+    _Photo003.alpha=1;
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:0.2
+                          delay:0.4
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _Photo001 .frame = CGRectMake(214, 1, 80, 80);
+                         _Photo002 .frame = CGRectMake(214, 90, 80, 80);
+                         _Photo003 .frame = CGRectMake(205, 186, 96, 67);
+                         
+                     }
+                     completion:nil];
+    
+}
+
+- (IBAction)Contiuar:(id)sender {
+    
+    [UIView animateWithDuration:0.4
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _TakePicture.frame = CGRectMake(0, 0, 320, 568);
+                     }
+                     completion:nil];
+    
+}
+- (IBAction)Foto001A:(id)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:picker animated:YES completion:nil];
+    _FOTO.text=@"Foto001A";
+    
+  
+}
+- (IBAction)Foto002A:(id)sender {
+    
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:picker animated:YES completion:nil];
+    
+    _FOTO.text=@"Foto002A";
+   
+}
+- (IBAction)Foto003A:(id)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:picker animated:YES completion:nil];
+    _FOTO.text=@"Foto003A";
+}
+
+
+- (IBAction)galeri:(id)sender {
+
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)takePhoto {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+    
+    
+    
+}
+
+- (void)selectPhoto {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+    
+}
+
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    if ([_FOTO.text isEqualToString:@"Foto001A"]) {
+        UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+        self.ImagenFoto01.image = chosenImage;
+        self.Photo001.image = chosenImage;
+        
+        UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
+        [picker dismissViewControllerAnimated:YES completion:NULL];
+    }else
+        if ([_FOTO.text isEqualToString:@"Foto002A"]) {
+            UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+            self.ImagenFoto02.image = chosenImage;
+            self.Photo002.image = chosenImage;
+            
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
+            [picker dismissViewControllerAnimated:YES completion:NULL];
+        }else if ([_FOTO.text isEqualToString:@"Foto003A"]) {
+            UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+            self.ImagenFoto03.image = chosenImage;
+            self.Photo003S.image = chosenImage;
+            self.Photo003.alpha=0;
+            self.Photo003S.alpha=1;
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
+            [picker dismissViewControllerAnimated:YES completion:NULL];
+        }
+    
+    self.ImagenFoto01.layer.borderWidth = 3.0f;
+    self.ImagenFoto01.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.ImagenFoto01.clipsToBounds = YES;
+    self.ImagenFoto02.layer.borderWidth = 3.0f;
+    self.ImagenFoto02.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.ImagenFoto02.clipsToBounds = YES;
+    self.ImagenFoto03.layer.borderWidth = 3.0f;
+    self.ImagenFoto03.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.ImagenFoto03.clipsToBounds = YES;
+}
+- (IBAction)Cancel:(id)sender {
+    
+    
+    [UIView animateWithDuration:0.4
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _TakePicture.frame = CGRectMake(0, 568
+                                                         , 320, 568);
+                     }
+                     completion:nil];
+}
+- (IBAction)SaveFotok:(id)sender {
+    [UIView animateWithDuration:0.4
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _TakePicture.frame = CGRectMake(0, 568
+                                                         , 320, 568);
+                     }
+                     completion:nil];
+}
+- (IBAction)ShareFaacebook:(id)sender {
+    
+    
+    
+    FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+    photo.image = _ImagenFoto03.image;
+    photo.userGenerated = YES;
+    FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
+    content.photos = @[photo];
+    
+    FBSDKSharePhotoContent *contentq = [[FBSDKSharePhotoContent alloc] init];
+    contentq.photos = @[photo];
+    
+    NSLog(@"Share!!");
+    
+    FBSDKShareLinkContent *hashtags = [[FBSDKShareLinkContent alloc] init];
+    hashtags.contentURL = [NSURL URLWithString:@"https://developers.facebook.com"];
+    hashtags.hashtag = [FBSDKHashtag hashtagWithString:@"#Mypersoanlbets"];
+    
+   
+    
+ 
+    
+    
+    
+    
+}
+
+@end
